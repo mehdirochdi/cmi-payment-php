@@ -1,5 +1,7 @@
 <?php
-require_once('../init.php');
+// require_once('../init.php'); // CHARGE MANUALLY ALL CLASS LIB
+
+require '../vendor/autoload.php'; // AUTOLOAD FROM COMPOSER
 
 $client = new CMI\CmiClient([
     'storekey' => '', // STOREKEY
@@ -25,5 +27,4 @@ $client = new CMI\CmiClient([
 // $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
 
 $client->redirect_post();
-// 4000000000000010
 ?>
