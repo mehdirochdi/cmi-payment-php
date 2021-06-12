@@ -2,12 +2,12 @@
 require_once('../init.php');
 
 $client = new CMI\CmiClient([
-    'storekey' => '', //
+    'storekey' => '', // STOREKEY
     'clientid' => '', // CLIENTID
     'oid' => '135ABC', // COMMAND ID IT MUST BE UNIQUE
-    'shopurl' => 'http://cmiphp.local',
-    'okUrl' => 'http://cmiphp.local/okFail.php',
-    'failUrl' => 'http://cmiphp.local/okFail.php',
+    'shopurl' => 'YOUR_DOMAIN_HERE',
+    'okUrl' => 'YOUR_DOMAIN_HERE/okFail.php',
+    'failUrl' => 'YOUR_DOMAIN_HERE/okFail.php',
     'email' => 'mehdi.rochdi@gmail.com',
     'BillToName' => 'mehdi rochdi',
     'BillToCompany' => 'company name',
@@ -18,10 +18,12 @@ $client = new CMI\CmiClient([
     'BillToCountry' => '504',
     'tel' => '0021201020304',
     'amount' => $_POST['amount'], // must be handled and securised
-    'CallbackResponse' => 'true',
-    'CallbackURL' => 'http://cmiphp.local/callback.php',
+    'CallbackURL' => 'YOUR_DOMAIN_HERE/callback.php',
 ]);
-$client->redirect_post();
 
+// OPTIONAL ATTRIBUTES
+// $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
+
+$client->redirect_post();
 // 4000000000000010
 ?>
