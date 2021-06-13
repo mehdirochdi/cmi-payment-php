@@ -111,7 +111,7 @@ class BaseCmiClient implements CmiClientInterface
         }
 
         if($config['storekey'] !== null && (\preg_match('/\s/', $config['storekey']))) {
-            throw new InvalidArgumentException('clientid cannot contain whitespace');
+            throw new InvalidArgumentException('storekey cannot contain whitespace');
         }
 
         //clientid
