@@ -7,42 +7,27 @@ use CMI\Exception\InvalidArgumentException;
 
 final class CmiClientTest extends TestCase
 {
-    public function test_it_require_storekey() {
+    public function test_it_require_storekey()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('storekey is required');
 
-        try{
-            $client = new CmiClient();
-        }catch(InvalidArgumentException $e) {
-
-            $this->assertEquals(
-                'storekey is required',
-                $e->getMessage()
-            );
-        }  
+        new CmiClient();
     }
 
-    public function test_storekey_null() {
+    public function test_storekey_null()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('storekey is required');
 
-        try{
-            $client = new CmiClient(['storekey' => null]);
-        }catch(InvalidArgumentException $e) {
-            //die($e->getMessage());
-            $this->assertEquals(
-                'storekey is required',
-                $e->getMessage()
-            );
-        }  
+        new CmiClient(['storekey' => null]);
     }
 
-    public function test_storekey_has_space() {
+    public function test_storekey_has_space()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('storekey cannot contain whitespace');
 
-        try{
-            $client = new CmiClient(['storekey' => '123 256']);
-        }catch(InvalidArgumentException $e) {
-            //die($e->getMessage());
-            $this->assertEquals(
-                'storekey cannot contain whitespace',
-                $e->getMessage()
-            );
-        }  
+        new CmiClient(['storekey' => '123 256']);
     }
 }
