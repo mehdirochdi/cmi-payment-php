@@ -1,0 +1,1 @@
+{"version":1,"defects":{"CmiClientTest::test_it_require_storeid":3},"times":{"CmiClientTest::testCanBeCreated":0.01,"CmiClientTest::test_itRequireStoreId":0.008,"CmiClientTest::test_it_require_storeid":0.01,"CmiClientTest::test_storeid_null":0.015}}
