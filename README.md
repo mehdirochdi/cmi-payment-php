@@ -68,7 +68,7 @@ $client = new CMI\CmiClient([
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI
 ?>
 ```
-![Payment page](/img/tutorial/payment-page.png)
+![Payment page](https://brahimniya.net/tutorial/payment-page.png)
 
 
 ## Basic test card numbers
@@ -82,7 +82,7 @@ The following card information try to tests local payments such as Strong Custom
 
 Branch : `MasterCard`, PAN: `5191630100004896`, Authentication code: `123` Expired date: `make any date` CVC: `000`
 
-![Payment page](/img/tutorial/3dsecure.png)
+![Payment page](https://brahimniya.net/tutorial/3dsecure.png)
 
 ## Optional Params Example
 ```php title="example/process.php"
