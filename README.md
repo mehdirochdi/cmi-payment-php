@@ -19,7 +19,7 @@ cmi-php requires the following components to work correctly
 
 You can install the bindings via [composer](https://getcomposer.org/). Run the following command:
 ```shell
-composer require mehdirochdi/cmi-payment-php
+composer require rochdi/cmi-php
 ```
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading)
 ```shell
