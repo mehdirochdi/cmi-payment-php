@@ -1,5 +1,5 @@
 {
-    "name": "rochdi/cmi-php",
+    "name": "mehdirochdi/cmi-payment-php",
     "description": "PHP package to communicate with the CMI payment plateform in Morocco",
     "keywords": [
         "cmi",
