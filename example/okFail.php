@@ -5,7 +5,7 @@ require_once('./lib/CmiClientInterface.php');
 require_once('./lib/BaseCmiClient.php');
 require_once('./lib/CmiClient.php');
 
-$_POST['storekey'] = 'TEST1234';
+$_POST['storekey'] = '';
 $hash = $_POST['HASH'];
 
 $client = new CMI\CmiClient($_POST);
