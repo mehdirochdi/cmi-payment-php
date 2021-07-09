@@ -51,7 +51,7 @@ Keeping mind that `storekey` and `clientid` are given by CMI, you should contact
 ```php title="example/process.php"
 <?php
 // REQUIRED PARAMS
-$client = new CMI\CmiClient([
+$client = new Mehdirochdi\CMI\CmiClient([
     'storekey' => '', // STOREKEY
     'clientid' => '', // CLIENTID
     'oid' => '135ABC', // COMMAND ID IT MUST BE UNIQUE
@@ -89,7 +89,7 @@ Branch : `MasterCard`, PAN: `5191630100004896`, Authentication code: `123` Expir
 ```php title="example/process.php"
 <?php
 // REQUIRED PARAMS
-$client = new CMI\CmiClient([
+$client = new Mehdirochdi\CMI\CmiClient([
     ...
 ]);
 
