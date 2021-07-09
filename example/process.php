@@ -4,7 +4,7 @@
 require '../vendor/autoload.php'; // AUTOLOAD FROM COMPOSER
 
 $base_url="http://cmi-php.local/example";
-$client = new CMI\CmiClient([
+$client = new Mehdirochdi\CMI\CmiClient([
     'storekey' => '', // STOREKEY
     'clientid' => '', // CLIENTID
     'oid' => '137ABC', // COMMAND ID IT MUST BE UNIQUE
@@ -25,6 +25,7 @@ $client = new CMI\CmiClient([
 ]);
 
 // OPTIONAL ATTRIBUTES
+// $client->lang = 'ar'; // CHANGE LANG PAGE
 // $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
 
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI

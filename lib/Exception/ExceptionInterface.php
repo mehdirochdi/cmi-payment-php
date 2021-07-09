@@ -1,5 +1,5 @@
 <?php
-namespace CMI\Exception;
+namespace Mehdirochdi\CMI\Exception;
 
 if (\interface_exists(\Throwable::class, false)) {
     /**

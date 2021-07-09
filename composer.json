@@ -3,11 +3,16 @@
     "description": "PHP package to communicate with the CMI payment plateform in Morocco",
     "keywords": [
         "cmi",
+        "cmi online payment",
         "payment processing",
         "morocco payment",
         "cmi payment",
         "payment in morocco",
         "paiement en ligne cmi",
+        "cmi paiement en ligne",
+        "paiement en ligne maroc",
+        "cmi paiement php",
+        "cmi payment php",
         "paiement au maroc"
     ],
     "license": "MIT",
@@ -30,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CMI\\": "lib/"
+            "Mehdirochdi\\CMI\\": "lib/"
         }
     },
     "autoload-dev": {
