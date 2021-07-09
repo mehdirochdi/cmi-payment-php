@@ -25,7 +25,7 @@ $client = new Mehdirochdi\CMI\CmiClient([
 ]);
 
 // OPTIONAL ATTRIBUTES
-$client->lang = 'ar'; // CHANGE LANG PAGE
+// $client->lang = 'ar'; // CHANGE LANG PAGE
 // $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
 
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI
