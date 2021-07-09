@@ -335,7 +335,6 @@ class BaseCmiClient implements CmiClientInterface
         $cmiParams = $this->requireOpts;
         $postParams = array_keys($cmiParams);
         natcasesort($postParams);
-        $this->dd(array_keys($cmiParams), $postParams);
         $hashval = "";
         foreach ($postParams as $param){
             
