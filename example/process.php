@@ -5,8 +5,8 @@ require '../vendor/autoload.php'; // AUTOLOAD FROM COMPOSER
 
 $base_url="http://cmi-php.local/example";
 $client = new Mehdirochdi\CMI\CmiClient([
-    'storekey' => 'TEST1234', // STOREKEY
-    'clientid' => '600002599', // CLIENTID
+    'storekey' => '', // STOREKEY
+    'clientid' => '', // CLIENTID
     'oid' => '137ABC', // COMMAND ID IT MUST BE UNIQUE
     'shopurl' => $base_url, // SHOP URL FOR REDIRECTION
     'okUrl' => $base_url.'/okFail.php', // REDIRECTION AFTER SUCCEFFUL PAYMENT
