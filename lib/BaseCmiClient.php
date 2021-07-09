@@ -1,8 +1,8 @@
 <?php
-namespace CMI;
+namespace Mehdirochdi\CMI;
 
 use Exception;
-use CMI\Exception\InvalidArgumentException;
+use Mehdirochdi\CMI\Exception\InvalidArgumentException;
 
 class BaseCmiClient implements CmiClientInterface
 {
@@ -50,15 +50,9 @@ class BaseCmiClient implements CmiClientInterface
         // VALIDATE REQUIRE OTPIONS
         $this->validateConfig($requireOpts);
 
-        $storeKey = $requireOpts['storekey'];
-        
-        unset($requireOpts['storekey']); // EXCLUDE storekey
         // ASSIGN 
         $this->requireOpts = $requireOpts;
               
-        // GENERATE HASH
-        $this->HASH = $this->generateHash($storeKey);
-
     }
 
     /**
@@ -328,16 +322,23 @@ class BaseCmiClient implements CmiClientInterface
      * 
      * @return string hash
      */
-    public function generateHash($storeKey)
+    public function generateHash($storeKey = null)
     {
         // amount|BillToCompany|BillToName|callbackUrl|clientid|currency|email|failUrl|hashAlgorithm|lang|okurl|rnd|storetype|TranType|storeKey
-
+        /**
+         * ASSIGNE STORE KEY
+         */
+        if($storeKey == null)
+            $storeKey = $this->requireOpts['storekey'];
+        
+        unset($this->requireOpts['storekey']); // EXCLUDE STOREKEY FROM REQUIRE OPTIONS
         $cmiParams = $this->requireOpts;
         $postParams = array_keys($cmiParams);
         natcasesort($postParams);
+        $this->dd(array_keys($cmiParams), $postParams);
         $hashval = "";
         foreach ($postParams as $param){
-
+            
             $paramValue = trim($cmiParams[$param]);
             $escapedParamValue = str_replace("|", "\\|", str_replace("\\", "\\\\", $paramValue));
 
@@ -352,7 +353,19 @@ class BaseCmiClient implements CmiClientInterface
         $calculatedHashValue = hash('sha512', $hashval);
         $hash = base64_encode (pack('H*',$calculatedHashValue));
 
+        $this->requireOpts['Hash'] = $hash; // ASSIGN HASH
+        
         return $hash;
+    }
+
+    public function dd(...$values)
+    {
+        echo '<pre>';
+        foreach($values as $value) {
+            print_r($value);
+        }
+        echo '</pre>';
+        exit();
     }
 
     public function __get($name)

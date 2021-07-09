@@ -1,5 +1,5 @@
 <?php
-namespace CMI;
+namespace Mehdirochdi\CMI;
 
 class CmiClient extends BaseCmiClient {
     
@@ -9,6 +9,15 @@ class CmiClient extends BaseCmiClient {
      * @return html
      */
     public function redirect_post() {
+                             
+        /**
+         * GENERATE HASH
+         */
+        $this->generateHash();
+
+        /**
+         * HANDLE REQUIRE OPTIONS HIDDEN INPUTS AND REDIRECT TO CMI PAGE
+         */
         $url = self::DEFAULT_API_BASE.'/fim/est3Dgate';
 
         $html = "<html'>";

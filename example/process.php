@@ -4,9 +4,9 @@
 require '../vendor/autoload.php'; // AUTOLOAD FROM COMPOSER
 
 $base_url="http://cmi-php.local/example";
-$client = new CMI\CmiClient([
-    'storekey' => '', // STOREKEY
-    'clientid' => '', // CLIENTID
+$client = new Mehdirochdi\CMI\CmiClient([
+    'storekey' => 'TEST1234', // STOREKEY
+    'clientid' => '600002599', // CLIENTID
     'oid' => '137ABC', // COMMAND ID IT MUST BE UNIQUE
     'shopurl' => $base_url, // SHOP URL FOR REDIRECTION
     'okUrl' => $base_url.'/okFail.php', // REDIRECTION AFTER SUCCEFFUL PAYMENT
@@ -25,6 +25,7 @@ $client = new CMI\CmiClient([
 ]);
 
 // OPTIONAL ATTRIBUTES
+$client->lang = 'ar'; // CHANGE LANG PAGE
 // $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
 
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI
