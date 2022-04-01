@@ -83,7 +83,7 @@ The following card information try to tests local payments such as Strong Custom
 
 Branch : `MasterCard`, PAN: `5191630100004896`, Authentication code: `123` Expired date: `make any date` CVC: `000`
 
-![Payment page](https://intdesigners.com/3dsecure.png)
+![Payment page](https://intdesigners.com/3dsecure.PNG)
 
 ## Optional Params Example
 ```php title="example/process.php"
