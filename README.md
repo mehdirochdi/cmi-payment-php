@@ -91,8 +91,9 @@ Branch : `MasterCard`, PAN: `5191630100004896`, Authentication code: `123` Expir
 // REQUIRED PARAMS
 $client = new Mehdirochdi\CMI\CmiClient([
     ...
+    'AutoRedirect' => 'true',
 ]);
-
+OR
 $client->AutoRedirect = 'true'; // REDIRECT THE CUSTOMER AUTOMATICALY BACK TO THE MERCHANT's WEB SITE WHEN TRANSACION IS ACCEPTED
 $client->redirect_post(); // CREATE INPUTS HIDDEN, GENERATE A VALID HASH AND MAKE REDIRECT POST TO CMI
 ```
