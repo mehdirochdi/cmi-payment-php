@@ -59,7 +59,7 @@ class BaseCmiClient implements CmiClientInterface
      *
      * @return array all default options
      */
-    public function getDefaultOpts()
+    public function getDefaultOpts(): array
     {
         return [
             'storetype' => '3D_PAY_HOSTING',
@@ -78,7 +78,7 @@ class BaseCmiClient implements CmiClientInterface
      *
      * @return array all require options
      */
-    public function getRequireOpts()
+    public function getRequireOpts(): array
     {
         return $this->requireOpts;
     }
@@ -88,7 +88,7 @@ class BaseCmiClient implements CmiClientInterface
      *
      * @throws \CMI\Exception\InvalidArgumentException
      */
-    private function validateConfig($config)
+    private function validateConfig($config): void
     {
         //storekey
         if (!isset($config['storekey'])) {
@@ -321,7 +321,7 @@ class BaseCmiClient implements CmiClientInterface
      *
      * @return string hash
      */
-    public function generateHash($storeKey = null)
+    public function generateHash($storeKey = null): string
     {
         // amount|BillToCompany|BillToName|callbackUrl|clientid|currency|email|failUrl|hashAlgorithm|lang|okurl|rnd|storetype|TranType|storeKey
         /**

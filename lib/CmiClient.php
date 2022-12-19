@@ -50,7 +50,7 @@ class CmiClient extends BaseCmiClient
      * @param HASH
      * @return bool
      */
-    public function hash_eq($hash)
+    public function hash_eq($hash): bool
     {
         return $this->HASH == $hash;
     }
