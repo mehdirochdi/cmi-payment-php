@@ -1,4 +1,5 @@
 <?php
+
 namespace Mehdirochdi\CMI;
 
 use Exception;
@@ -6,29 +7,28 @@ use Mehdirochdi\CMI\Exception\InvalidArgumentException;
 
 class BaseCmiClient implements CmiClientInterface
 {
-
     /**
      * @var string default base URL for CMI's API
      */
-    const DEFAULT_API_BASE = 'https://testpayment.cmi.co.ma';
-    
+    public const DEFAULT_API_BASE = 'https://testpayment.cmi.co.ma';
+
     /**
      * @var array Languages supported by CMI
      */
-    const LANGUES = ['ar', 'fr', 'en'];
+    public const LANGUES = ['ar', 'fr', 'en'];
 
     /**
      * @var array all requiredOpts
      */
     public $requireOpts;
-    
+
     /**
      * Initializes a new instance of the {BaseCmiClient} class.
-     * 
+     *
      * The constructor takes a require multiple argument. it must be an array
-     * 
+     *
      * Configuration setting include the following options:
-     * 
+     *
      * - storekey (string) : it's necessary to generate hash key
      * - clientid (string) : it given by CMI you should contcat them to get a unique clientid
      * - oid (string) : command_id it should be unique for each time your would like to make transaction
@@ -40,27 +40,26 @@ class BaseCmiClient implements CmiClientInterface
      */
     public function __construct($requireOpts = [])
     {
-        if(!\is_array($requireOpts)) {
+        if (!\is_array($requireOpts)) {
             throw new Exception($requireOpts.' must be a array');
         }
-        
+
         // MERGE REQUIRE OPTIONS WITH DEFAULT OPTIONS
         $requireOpts = \array_merge($this->getDefaultOpts(), $requireOpts);
 
         // VALIDATE REQUIRE OTPIONS
         $this->validateConfig($requireOpts);
 
-        // ASSIGN 
+        // ASSIGN
         $this->requireOpts = $requireOpts;
-              
     }
 
     /**
      * Get default options CMI
-     * 
+     *
      * @return array all default options
      */
-    public function getDefaultOpts()
+    public function getDefaultOpts(): array
     {
         return [
             'storetype' => '3D_PAY_HOSTING',
@@ -76,209 +75,209 @@ class BaseCmiClient implements CmiClientInterface
 
     /**
      * Get all requires options
-     * 
+     *
      * @return array all require options
      */
-    public function getRequireOpts() {
-
+    public function getRequireOpts(): array
+    {
         return $this->requireOpts;
     }
-    
+
     /**
      * @param array<string, mixed> $config
-     * 
+     *
      * @throws \CMI\Exception\InvalidArgumentException
      */
-    private function validateConfig($config)
+    private function validateConfig($config): void
     {
         //storekey
-        if(!isset($config['storekey'])) {
+        if (!isset($config['storekey'])) {
             throw new InvalidArgumentException('storekey is required');
         }
 
-        if($config['storekey'] !== null && !\is_string($config['storekey'])) {
+        if ($config['storekey'] !== null && !\is_string($config['storekey'])) {
             throw new InvalidArgumentException('storekey must be null or string');
         }
 
-        if($config['storekey'] !== null && $config['storekey'] === '') {
+        if ($config['storekey'] !== null && $config['storekey'] === '') {
             throw new InvalidArgumentException('storekey cannot be the empty string');
         }
 
-        if($config['storekey'] !== null && (\preg_match('/\s/', $config['storekey']))) {
+        if ($config['storekey'] !== null && (\preg_match('/\s/', $config['storekey']))) {
             throw new InvalidArgumentException('storekey cannot contain whitespace');
         }
 
         //clientid
-        if(!isset($config['clientid'])) {
+        if (!isset($config['clientid'])) {
             throw new InvalidArgumentException('clientid is required');
         }
 
-        if($config['clientid'] !== null && !\is_string($config['clientid'])) {
+        if ($config['clientid'] !== null && !\is_string($config['clientid'])) {
             throw new InvalidArgumentException('clientid must be null or string');
         }
 
-        if($config['clientid'] !== null && $config['clientid'] === '') {
+        if ($config['clientid'] !== null && $config['clientid'] === '') {
             throw new InvalidArgumentException('clientid cannot be the empty string');
         }
 
-        if($config['clientid'] !== null && (\preg_match('/\s/', $config['clientid']))) {
+        if ($config['clientid'] !== null && (\preg_match('/\s/', $config['clientid']))) {
             throw new InvalidArgumentException('clientid cannot contain whitespace');
         }
 
         //storetype
-        if(!isset($config['storetype'])) {
+        if (!isset($config['storetype'])) {
             throw new InvalidArgumentException('storetype is required');
         }
 
-        if($config['storetype'] !== null && !\is_string($config['storetype'])) {
+        if ($config['storetype'] !== null && !\is_string($config['storetype'])) {
             throw new InvalidArgumentException('storetype must be null or string');
         }
 
-        if($config['storetype'] !== null && $config['storetype'] === '') {
+        if ($config['storetype'] !== null && $config['storetype'] === '') {
             throw new InvalidArgumentException('storetype cannot be the empty string');
         }
 
-        if($config['storetype'] !== null && (\preg_match('/\s/', $config['storetype']))) {
+        if ($config['storetype'] !== null && (\preg_match('/\s/', $config['storetype']))) {
             throw new InvalidArgumentException('storetype cannot contain whitespace');
         }
 
         //trantype
-        if(!isset($config['trantype'])) {
+        if (!isset($config['trantype'])) {
             throw new InvalidArgumentException('trantype is required');
         }
 
-        if($config['trantype'] !== null && !\is_string($config['trantype'])) {
+        if ($config['trantype'] !== null && !\is_string($config['trantype'])) {
             throw new InvalidArgumentException('trantype must be null or string');
         }
 
-        if($config['trantype'] !== null && $config['trantype'] === '') {
+        if ($config['trantype'] !== null && $config['trantype'] === '') {
             throw new InvalidArgumentException('trantype cannot be the empty string');
         }
 
-        if($config['trantype'] !== null && (\preg_match('/\s/', $config['trantype']))) {
+        if ($config['trantype'] !== null && (\preg_match('/\s/', $config['trantype']))) {
             throw new InvalidArgumentException('trantype cannot contain whitespace');
         }
 
         //amount
-        if(!isset($config['amount'])) {
+        if (!isset($config['amount'])) {
             throw new InvalidArgumentException('amount is required');
         }
 
-        if($config['amount'] !== null && !\is_string($config['amount'])) {
+        if ($config['amount'] !== null && !\is_string($config['amount'])) {
             throw new InvalidArgumentException('amount must be null or string');
         }
 
-        if($config['amount'] !== null && $config['amount'] === '') {
+        if ($config['amount'] !== null && $config['amount'] === '') {
             throw new InvalidArgumentException('amount cannot be the empty string');
         }
 
-        if($config['amount'] !== null && (\preg_match('/\s/', $config['amount']))) {
+        if ($config['amount'] !== null && (\preg_match('/\s/', $config['amount']))) {
             throw new InvalidArgumentException('amount cannot contain whitespace');
         }
 
         //currency
-        if(!isset($config['currency'])) {
+        if (!isset($config['currency'])) {
             throw new InvalidArgumentException('currency is required');
         }
 
-        if($config['currency'] !== null && !\is_string($config['currency'])) {
+        if ($config['currency'] !== null && !\is_string($config['currency'])) {
             throw new InvalidArgumentException('currency must be null or string');
         }
 
-        if($config['currency'] !== null && $config['currency'] === '') {
+        if ($config['currency'] !== null && $config['currency'] === '') {
             throw new InvalidArgumentException('currency cannot be the empty string');
         }
 
-        if($config['currency'] !== null && (\preg_match('/\s/', $config['currency']))) {
+        if ($config['currency'] !== null && (\preg_match('/\s/', $config['currency']))) {
             throw new InvalidArgumentException('currency cannot contain whitespace');
         }
 
         //oid
-        if(!isset($config['oid'])) {
+        if (!isset($config['oid'])) {
             throw new InvalidArgumentException('oid is required');
         }
 
-        if($config['oid'] !== null && !\is_string($config['oid'])) {
+        if ($config['oid'] !== null && !\is_string($config['oid'])) {
             throw new InvalidArgumentException('oid must be null or string');
         }
 
-        if($config['oid'] !== null && $config['oid'] === '') {
+        if ($config['oid'] !== null && $config['oid'] === '') {
             throw new InvalidArgumentException('oid cannot be the empty string');
         }
 
-        if($config['oid'] !== null && (\preg_match('/\s/', $config['oid']))) {
+        if ($config['oid'] !== null && (\preg_match('/\s/', $config['oid']))) {
             throw new InvalidArgumentException('oid cannot contain whitespace');
         }
 
         //okUrl
-        if(!isset($config['okUrl'])) {
+        if (!isset($config['okUrl'])) {
             throw new InvalidArgumentException('okUrl is required');
         }
 
-        if($config['okUrl'] !== null && !\is_string($config['okUrl'])) {
+        if ($config['okUrl'] !== null && !\is_string($config['okUrl'])) {
             throw new InvalidArgumentException('okUrl must be null or string');
         }
 
-        if($config['okUrl'] !== null && $config['okUrl'] === '') {
+        if ($config['okUrl'] !== null && $config['okUrl'] === '') {
             throw new InvalidArgumentException('okUrl cannot be the empty string');
         }
 
-        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$config['okUrl'])) {
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $config['okUrl'])) {
             throw new InvalidArgumentException('okUrl Invalid URL');
         }
 
         //failUrl
-        if(!isset($config['failUrl'])) {
+        if (!isset($config['failUrl'])) {
             throw new InvalidArgumentException('failUrl is required');
         }
 
-        if($config['failUrl'] !== null && !\is_string($config['failUrl'])) {
+        if ($config['failUrl'] !== null && !\is_string($config['failUrl'])) {
             throw new InvalidArgumentException('failUrl must be null or string');
         }
 
-        if($config['failUrl'] !== null && $config['failUrl'] === '') {
+        if ($config['failUrl'] !== null && $config['failUrl'] === '') {
             throw new InvalidArgumentException('failUrl cannot be the empty string');
         }
-        
-        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$config['failUrl'])) {
+
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $config['failUrl'])) {
             throw new InvalidArgumentException('failUrl Invalid URL');
         }
 
         //lang
-        if(!isset($config['lang'])) {
+        if (!isset($config['lang'])) {
             throw new InvalidArgumentException('lang is required');
         }
 
-        if($config['lang'] !== null && !\is_string($config['lang'])) {
+        if ($config['lang'] !== null && !\is_string($config['lang'])) {
             throw new InvalidArgumentException('lang must be null or string');
         }
 
-        if($config['lang'] !== null && $config['lang'] === '') {
+        if ($config['lang'] !== null && $config['lang'] === '') {
             throw new InvalidArgumentException('lang cannot be the empty string');
         }
 
-        if($config['lang'] !== null && (\preg_match('/\s/', $config['lang']))) {
+        if ($config['lang'] !== null && (\preg_match('/\s/', $config['lang']))) {
             throw new InvalidArgumentException('currency cannot contain whitespace');
         }
 
-        if(!in_array($config['lang'], self::LANGUES)) {
+        if (!in_array($config['lang'], self::LANGUES)) {
             throw new InvalidArgumentException('you should choose between fr, ar or en');
         }
 
         //email
-        if(!isset($config['email'])) {
+        if (!isset($config['email'])) {
             throw new InvalidArgumentException('email is required');
         }
 
-        if($config['email'] !== null && !\is_string($config['email'])) {
+        if ($config['email'] !== null && !\is_string($config['email'])) {
             throw new InvalidArgumentException('email must be null or string');
         }
 
-        if($config['email'] !== null && $config['email'] === '') {
+        if ($config['email'] !== null && $config['email'] === '') {
             throw new InvalidArgumentException('email cannot be the empty string');
         }
 
-        if($config['email'] !== null && (\preg_match('/\s/', $config['email']))) {
+        if ($config['email'] !== null && (\preg_match('/\s/', $config['email']))) {
             throw new InvalidArgumentException('email cannot contain whitespace');
         }
 
@@ -287,62 +286,62 @@ class BaseCmiClient implements CmiClientInterface
         }
 
         //BillToName
-        if(!isset($config['BillToName'])) {
+        if (!isset($config['BillToName'])) {
             throw new InvalidArgumentException('BillToName is required');
         }
 
-        if($config['BillToName'] !== null && !\is_string($config['BillToName'])) {
+        if ($config['BillToName'] !== null && !\is_string($config['BillToName'])) {
             throw new InvalidArgumentException('BillToName must be null or string');
         }
 
-        if($config['BillToName'] !== null && $config['BillToName'] === '') {
+        if ($config['BillToName'] !== null && $config['BillToName'] === '') {
             throw new InvalidArgumentException('BillToName cannot be the empty string');
         }
 
         //hashAlgorithm
-        if(!isset($config['hashAlgorithm'])) {
+        if (!isset($config['hashAlgorithm'])) {
             throw new InvalidArgumentException('hashAlgorithm is required');
         }
 
-        if($config['hashAlgorithm'] !== null && !\is_string($config['hashAlgorithm'])) {
+        if ($config['hashAlgorithm'] !== null && !\is_string($config['hashAlgorithm'])) {
             throw new InvalidArgumentException('hashAlgorithm must be null or string');
         }
 
-        if($config['hashAlgorithm'] !== null && $config['hashAlgorithm'] === '') {
+        if ($config['hashAlgorithm'] !== null && $config['hashAlgorithm'] === '') {
             throw new InvalidArgumentException('hashAlgorithm cannot be the empty string');
         }
 
-        if($config['hashAlgorithm'] !== null && (\preg_match('/\s/', $config['hashAlgorithm']))) {
+        if ($config['hashAlgorithm'] !== null && (\preg_match('/\s/', $config['hashAlgorithm']))) {
             throw new InvalidArgumentException('hashAlgorithm cannot contain whitespace');
         }
     }
 
     /**
      * Generate Hash to make redirection to CMI page
-     * 
+     *
      * @return string hash
      */
-    public function generateHash($storeKey = null)
+    public function generateHash($storeKey = null): string
     {
         // amount|BillToCompany|BillToName|callbackUrl|clientid|currency|email|failUrl|hashAlgorithm|lang|okurl|rnd|storetype|TranType|storeKey
         /**
          * ASSIGNE STORE KEY
          */
-        if($storeKey == null)
+        if ($storeKey == null) {
             $storeKey = $this->requireOpts['storekey'];
-        
+        }
+
         unset($this->requireOpts['storekey']); // EXCLUDE STOREKEY FROM REQUIRE OPTIONS
         $cmiParams = $this->requireOpts;
         $postParams = array_keys($cmiParams);
         natcasesort($postParams);
         $hashval = "";
-        foreach ($postParams as $param){
-            
+        foreach ($postParams as $param) {
             $paramValue = trim($cmiParams[$param]);
             $escapedParamValue = str_replace("|", "\\|", str_replace("\\", "\\\\", $paramValue));
 
             $lowerParam = strtolower($param);
-            if($lowerParam != "hash" && $lowerParam != "encoding" )	{
+            if ($lowerParam != "hash" && $lowerParam != "encoding") {
                 $hashval = $hashval . $escapedParamValue . "|";
             }
         }
@@ -350,17 +349,17 @@ class BaseCmiClient implements CmiClientInterface
         $hashval = $hashval . $escapedStoreKey;
 
         $calculatedHashValue = hash('sha512', $hashval);
-        $hash = base64_encode (pack('H*',$calculatedHashValue));
+        $hash = base64_encode(pack('H*', $calculatedHashValue));
 
         $this->requireOpts['Hash'] = $hash; // ASSIGN HASH
-        
+
         return $hash;
     }
 
     public function dd(...$values)
     {
         echo '<pre>';
-        foreach($values as $value) {
+        foreach ($values as $value) {
             print_r($value);
         }
         echo '</pre>';

@@ -1,0 +1,24 @@
+name: fix-code-style using php-cs-fixer
+
+on: push
+
+jobs:
+  pint:
+    runs-on: ubuntu-latest
+
+    steps:
+      -   name: Checkout code
+          uses: actions/checkout@v2
+          with:
+            ref: ${{ github.head_ref }}
+
+      -   name: Install Composer
+          run: composer install
+
+      -   name: Run php-cs-fixer
+          run: ./vendor/bin/php-cs-fixer fix lib
+
+      -   name: Commit changes
+          uses: stefanzweifel/git-auto-commit-action@v4
+          with:
+            commit_message: Apply php-cs-fixer formatting

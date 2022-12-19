@@ -1,11 +1,12 @@
 <?php
+
 namespace Mehdirochdi\CMI;
 
 /**
  * Interface for a CMI client.
  */
-interface CmiClientInterface {
-
+interface CmiClientInterface
+{
     public function getDefaultOpts();
 
     public function getRequireOpts();

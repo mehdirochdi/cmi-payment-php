@@ -1,15 +1,16 @@
 <?php
+
 namespace Mehdirochdi\CMI;
 
-class CmiClient extends BaseCmiClient {
-    
+class CmiClient extends BaseCmiClient
+{
     /**
      * Generate inputs hidden and make redirection to CMI plateform t handle payment
-     * 
+     *
      * @return html
      */
-    public function redirect_post() {
-                             
+    public function redirect_post()
+    {
         /**
          * GENERATE HASH
          */
@@ -29,7 +30,7 @@ class CmiClient extends BaseCmiClient {
         $html .= "</head>";
         $html .="<body onload='closethisasap();'>";
         $html .="<form name='redirectpost' method='post' action='{$url}'>";
-        if ( !is_null($this->getRequireOpts()) ) {
+        if (!is_null($this->getRequireOpts())) {
             foreach ($this->getRequireOpts() as $name => $value) {
                 $html .= "<input type='hidden' name='{$name}' value='".trim($value)."'> ";
             }
@@ -45,12 +46,12 @@ class CmiClient extends BaseCmiClient {
 
     /**
      * Check status hash from CMI plateform if is equal to hash generated
-     * 
+     *
      * @param HASH
      * @return bool
      */
-    public function hash_eq($hash)
+    public function hash_eq($hash): bool
     {
-        return $this->HASH == $hash; 
+        return $this->HASH == $hash;
     }
 }
